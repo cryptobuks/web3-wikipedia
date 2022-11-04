@@ -35,8 +35,6 @@ const Home = () => {
         )}
       </div>
       <input class="form-control" placeholder="検索"></input>
-      <input type="text" name="atext" value={this.state.text}
-                       onChange={(e) => this.setState({text: e.target.value})}/>
     </div>
   );
 };
