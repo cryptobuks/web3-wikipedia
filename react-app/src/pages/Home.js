@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <div className="Home">
       <h1>Web3 Wikipedia</h1>
-      <button type="button" class="btn btn-secondary">New</button>
+      <Link type="button" class="btn btn-secondary" to="/Edit">New</Link>
       <div>{account}</div>
       <div>
         {account ? (
@@ -35,6 +35,8 @@ const Home = () => {
         )}
       </div>
       <input class="form-control" placeholder="検索"></input>
+      <input type="text" name="atext" value={this.state.text}
+                       onChange={(e) => this.setState({text: e.target.value})}/>
     </div>
   );
 };
