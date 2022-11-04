@@ -1,0 +1,13 @@
+.SearchResultItem {
+    position: relative;
+    margin-left: 5vh;
+    margin-bottom: 2vh;
+}
+
+.SearchResultItem a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height:100%;
+    width: 100%;
+}
