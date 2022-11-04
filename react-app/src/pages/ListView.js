@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import SearchResultItem from "../components/SearchResultItem";
 
 const ListView = () => {
+  // ダミーデータ
   const pages = [
     {title: "Japan", content: "hogehoge"},
     {title: "Australia", content: "hogehoge"}
