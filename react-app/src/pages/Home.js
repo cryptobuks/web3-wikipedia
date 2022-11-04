@@ -34,7 +34,8 @@ const Home = () => {
           <button type="button" class="btn btn-secondary" onClick={connectWallet}>Connected Wallet</button>
         )}
       </div>
-      <input class="form-control" placeholder="検索"></input>
+      {/* reduxできるまで一時的に以下のように記載 */}
+      <Link to="/ListView"><input class="form-control" placeholder="検索"></input></Link>
     </div>
   );
 };
