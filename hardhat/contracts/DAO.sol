@@ -1,5 +1,6 @@
 pragma solidity ^0.8.0;
 
+
 contract DAO {
     event proposalCreated(bytes32 indexed _proposalId, bytes32 _contentId, address _owner, uint256 _remainingDays);
     event proposalUpdated(bytes32 indexed _proposalId, bytes32 _contentId, address _owner, uint256 _remainingDays, uint256 _upVotes, uint256 _downVotes);
