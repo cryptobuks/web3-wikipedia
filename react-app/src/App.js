@@ -3,18 +3,16 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import ListView from "./pages/ListView";
 import Detail from "./pages/Detail";
-import Edit from "./pages/Edit";
-
-
+import Chat from "./pages/Edit";
 
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={`/`} element={<Home />} />
+        <Route path={`/a`} element={<Home />} />
         <Route path={`/ListView/`} element={<ListView />} />
-        <Route path={`/Edit/`} element={<Edit />} />
+        <Route path={`/`} element={<Chat />} />
         <Route path={`/Detail/`} element={<Detail />} />
       </Routes>
     </BrowserRouter>
