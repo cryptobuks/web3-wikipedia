@@ -63,9 +63,9 @@
   box-shadow: 0 4px 4px -2px rgba(0, 0, 0, .5);
 }
 
-.Create button[type="submit"]:hover,
-.Create input[type="submit"]:hover {
-  background: rgb(44, 114, 37);
+.Edit button[type="submit"]:hover,
+.Edit input[type="submit"]:hover {
+  background: rgb(19, 85, 151);
 }
 
 .Create button[type="submit"]:active,
