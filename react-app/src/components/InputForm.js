@@ -4,6 +4,8 @@ import {useForm,FormProvider} from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import BackHome from "./BackHome";
 import InputArea from "./InputArea";
+import ButtonComponent from "./ButtonComponent"
+import Grid from '@mui/material/Grid';
 
 
 export function InputForm (){
@@ -21,16 +23,19 @@ export function InputForm (){
                         navigate("/");
                     })}>
                     <label>Title</label>
-                    <InputArea val="Title" valid={{required:true}}/>
+                    <InputArea id ="title" val="Title" valid={{required:true}}/>
                     {errors.Title && <span>You need to input a title</span>}
                     <label>Contents</label>
-                    <InputArea val="Contents" valid={{required:true}}/>
+                        <InputArea id="contents" val="Contents" valid={{required:true}}/>
                     {errors.InputArea && <span>You need to input some contents</span>}
-                    <label>Valid date</label>
-                    <InputArea val="ValidDate" valid = {{valueAsNumber:true,validate:(value)=> value > 0}}/>
-                    {errors.ValidDate && <span>You need to input a valid date which bigger than 0</span>}
                     <input type="submit"/>
-                    <BackHome />
+                    <Grid item xs={12}>
+                        <ButtonComponent
+                        color="success"
+                        name="Back Home"
+                        to="/"
+                        />
+                    </Grid>
                 </form>
             </FormProvider>
         </>
