@@ -12,7 +12,8 @@ import { Searcher } from '../Search';
 
 
 const Home = () => {
-  const [account, setAccount] = useState(null);
+  const accountinitialState = store.getState().setter.word;
+  const [account, setAccount] = useState(accountinitialState);
   const [errorMessage, setErrorMessage] = useState(null);
   const [metaMaskFlag, setMetaMaskFlag] = useState(false);
 
@@ -53,8 +54,9 @@ const Home = () => {
           </Grid>
           <Grid item xs={12}>
             <ButtonComponent
+             color="primary"
               name="New"
-              to="/Edit"
+              to="/Create"
             />
           </Grid>
           <Grid item xs={12}>

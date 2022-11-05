@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const walletSlice = createSlice({
   name: 'wallet',
   initialState: {
-    word: "12345"
+    word: null
     // if you add reducer,please add state
   },
   reducers: {
