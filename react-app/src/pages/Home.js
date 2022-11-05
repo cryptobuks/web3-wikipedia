@@ -10,7 +10,8 @@ import SearchBar from "../components/SearchBar";
 import { Searcher } from '../Search';
 
 const Home = () => {
-  const [account, setAccount] = useState(null);
+  const accountinitialState = store.getState().setter.word;
+  const [account, setAccount] = useState(accountinitialState);
   const [errorMessage, setErrorMessage] = useState(null);
   const [metaMaskFlag, setMetaMaskFlag] = useState(false);
 

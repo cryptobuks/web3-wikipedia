@@ -6,15 +6,21 @@ import Detail from "./pages/Detail";
 import Edit from "./pages/Edit";
 import Modify from "./pages/Modify";
 import { Provider } from 'react-redux';
+import {persistStore} from 'redux-persist';
+import {PersistGate} from 'redux-persist/integration/react';
 
 import './App.css';
 import store from './store';
 import IpfsTest from "./components/IpfsTest";
 
+let persistor = persistStore(store);
+
 
 const App = () => {
   return (
+    <React.StrictMode>
      <Provider store={store}>
+      <PersistGate loading = {null} persistor={persistor}>
       <BrowserRouter>
         <Routes>
           <Route path={`/`} element={<Home />} />
@@ -25,7 +31,9 @@ const App = () => {
           <Route path={`/Ipfs/`} element={<IpfsTest />} />
         </Routes>
       </BrowserRouter>
+      </PersistGate>
      </Provider>
+     </React.StrictMode>
   );
 };
 
