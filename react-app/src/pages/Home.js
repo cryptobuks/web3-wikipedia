@@ -49,6 +49,7 @@ const Home = () => {
           </Grid>
           <Grid item xs={12}>
             {/* reduxできるまで一時的に以下のように記載 */}
+                  <Searcher />
             <Link to="/ListView"><input class="form-control" placeholder="検索"></input></Link>
           </Grid>
         </Grid>
