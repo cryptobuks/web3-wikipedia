@@ -10,6 +10,7 @@ const Detail = () => {
   const { state } = useLocation();
   const title = state.title;
   const contents = state.contents;
+  const key = state.key;
 
   // contents example -> fetch from the ipfs
   // to do: get the data from ipfs
@@ -41,8 +42,8 @@ const Detail = () => {
       {
         contents_example.closed ? (
           <div className="NotClosed">
-          <button type="button">Good:{goodState}</button>
-          <button type="button">Bad:{badState}</button>
+          <button type="button">Good: {goodState}</button>
+          <button type="button">Bad: {badState}</button>
           </div>
         ) : (
           <div className="Closed">
@@ -52,7 +53,14 @@ const Detail = () => {
         )
       }
       <BackHome />
-      <button onClick={()=>{navigate("/Modify",{state:{title:title,contents:contents}})}}>Modify</button>
+      <button onClick={()=>{
+        navigate(
+          "/Modify",
+          {state: { title: title, contents: contents, key: key }}
+        )
+      }}>
+        Modify
+      </button>
     </div>
   )
 };
