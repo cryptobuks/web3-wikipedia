@@ -1,6 +1,11 @@
-const Edit = () => {
-    return(
-    <p>edit</p>
-    )
+import { InputForm } from "../components/ InputForm";
+
+
+
+const Edit = ()=>{
+    return <div className="Edit">
+        <InputForm />
+    </div>
 }
+
 export default Edit;
