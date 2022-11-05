@@ -24,7 +24,7 @@ const IpfsGetObject = async (setResponse, bucketName, key, testDummy=[]) => {
       } else {
         console.log("Now using dummy test data")
         _res = JSON.parse(_res);
-        setResponse(testDummy);
+        // setResponse(testDummy);
         setResponse([...testDummy, _res]);
       }
     }
