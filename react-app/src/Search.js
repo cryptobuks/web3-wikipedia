@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { inputWord, selectWord } from './searchSlice'
+import { inputWord, selectWord } from './walletSlice'
 
 export function Searcher() {
   const [select_word, setText] = useState('');

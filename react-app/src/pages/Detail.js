@@ -12,6 +12,10 @@ const Detail = () => {
   const goodinitState = 2;
   const badinitState = 2;
 
+  //
+  const title = contents_example.title;
+  const contents = contents_example.contents;
+
   // For Botton status
   const [goodState,setGood] = useState(goodinitState);
   const [badState,setBad] = useState(badinitState);
@@ -29,8 +33,8 @@ const Detail = () => {
 
   return (
     <div className="Detail">
-      <h1>{contents_example.title}</h1>
-      <p>{contents_example.contents}</p>
+      <h1>{title}</h1>
+      <p>{contents}</p>
       {
         contents_example.closed ? (
           <div className="NotClosed">
@@ -45,7 +49,7 @@ const Detail = () => {
         )
       }
       <BackHome />
-      <button onClick={()=>{navigate("/Modify")}}>Modify</button>
+      <button onClick={()=>{navigate("/Modify",{state:{title:title,contents:contents}})}}>Modify</button>
     </div>
   )
 };
