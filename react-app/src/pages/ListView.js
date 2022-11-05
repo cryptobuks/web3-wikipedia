@@ -1,4 +1,5 @@
 import { Grid } from '@mui/material';
+import { Link } from "react-router-dom";
 import SearchResultItem from "../components/SearchResultItem";
 
 const ListView = () => {
@@ -21,6 +22,7 @@ const ListView = () => {
           </Grid>
         ))
       }
+      <Link to="/Detail"><input class="form-control" placeholder="to detail"></input></Link>
     </div>
   )
 };
