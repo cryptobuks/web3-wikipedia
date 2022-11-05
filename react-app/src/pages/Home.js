@@ -60,7 +60,7 @@ const Home = () => {
             <ButtonComponent
              color="primary"
               name="New"
-              to="/edit"
+              to="/create"
             />
           </Grid>
 

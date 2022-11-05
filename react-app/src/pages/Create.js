@@ -1,13 +1,13 @@
 import { InputForm } from "../components/InputForm";
 import Header from "../components/Header";
 
-const Edit = ()=>{
+const Create = ()=>{
     return (
-    <div className="Edit">
+    <div className="Create">
         <Header />
         <InputForm />
     </div>
   )
 };
 
-export default Edit;
+export default Create;
