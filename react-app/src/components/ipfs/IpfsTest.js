@@ -18,7 +18,6 @@ const IpfsTest = () => {
       // setIpfs(res);
       // console.log(res);
       await IpfsGetObject(setResponse, "web3-wiki", "test-content-0.json")
-      console.log(response);
     })()
   },[])
 

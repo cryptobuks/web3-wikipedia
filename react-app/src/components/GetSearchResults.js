@@ -1,14 +1,14 @@
+import {useState} from "react";
 import IpfsGetObject from "./ipfs/IpfsGetObject";
 
-const GetSearchReults = async () => {
+const GetSearchReults = async (pages, setPages) => {
   // Now, using dummy data
-  let pages = [
+  let dummy = [
     {title: "Japan", content: "hogehoge"},
     {title: "Australia", content: "hogehoge"}
   ];
-  const res = await IpfsGetObject("web3-wiki", "test-content-0.json");
-  pages[pages.length] = res;
-  return pages;
+  setPages(dummy);
+  await IpfsGetObject(setPages, "web3-wiki", "test-content-0.json", dummy);
 };
 
 export default GetSearchReults;

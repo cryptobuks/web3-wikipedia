@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
 const AWS = require('aws-sdk');
 
 AWS.config.update({ accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY, secretAccessKey: process.env.REACT_APP_AWS_SECRET_KEY });
 const s3 = new AWS.S3({endpoint: 'https://s3.filebase.com', signatureVersion: 'v4'});
 
 
-const IpfsGetObject = async (setResponse, bucketName, key) => {
+const IpfsGetObject = async (setResponse, bucketName, key, testDummy=[]) => {
   const params = {
     Bucket: bucketName,
     Key: key
@@ -19,7 +18,15 @@ const IpfsGetObject = async (setResponse, bucketName, key) => {
     } else {
       console.log(data);
       _res = Buffer.from(data.Body, 'utf8').toString();
-      setResponse(_res);
+      if (testDummy.length === 0) {
+        console.log(_res);
+        setResponse(_res);
+      } else {
+        console.log("Now using dummy test data")
+        _res = JSON.parse(_res);
+        setResponse(testDummy);
+        setResponse([...testDummy, _res]);
+      }
     }
   });
 };

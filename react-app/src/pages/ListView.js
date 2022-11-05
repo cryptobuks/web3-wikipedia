@@ -5,12 +5,10 @@ import GetSearchReults from "../components/GetSearchResults";
 
 const ListView = () => {
   // Dummy data
-  const [pages, setPages] = useState([]);
+  const [pages, setPages] = useState([{title: "", content: ""}]);
   useEffect(() => {
     (async () => {
-      const _pages = await GetSearchReults();
-      setPages(_pages);
-      console.log(pages);
+      await GetSearchReults(pages, setPages);
     })()
   },[])
 
@@ -20,10 +18,12 @@ const ListView = () => {
       {
         pages.map((page) =>(
           <Grid container direction="column">
+            {
             <SearchedItem
               title={page.title}
               content={page.content}
             />
+            }
           </Grid>
         ))
       }
