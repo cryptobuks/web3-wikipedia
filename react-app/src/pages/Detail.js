@@ -1,20 +1,23 @@
-import Popup from "../components/Popup"
 import React,{useState} from 'react'
-import BackHome from '../components/BackHome'
 import { BottomNavigation } from "@mui/material";
-import {useNavigate} from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
+
+import Popup from "../components/Popup"
+import BackHome from '../components/BackHome'
+
 
 const Detail = () => {
+  const { state } = useLocation();
+  const title = state.title;
+  const contents = state.contents;
+
   // contents example -> fetch from the ipfs
   // to do: get the data from ipfs
-  const contents_example = {title:"apple",contents:"This is an apple",closed:true};
-  // to do: get the exist goodinitState and badinitState from contract
+  const contents_example = { title: "apple", contents: "This is an apple", closed: true };
+
+  // TODO: get the exist goodinitState and badinitState from contract
   const goodinitState = 2;
   const badinitState = 2;
-
-  //
-  const title = contents_example.title;
-  const contents = contents_example.contents;
 
   // For Botton status
   const [goodState,setGood] = useState(goodinitState);
