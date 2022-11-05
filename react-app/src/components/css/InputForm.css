@@ -1,94 +1,102 @@
-form {
+.Edit form {
   max-width: 500px;
   margin: 0 auto;
 }
 
-h1 {
+.Edit #contents{
+  height: 500px;
+}
+
+.Edit h1 {
   font-weight: 100;
   text-align: center;
   padding-bottom: 10px;
   border-bottom: 1px solid rgb(79, 98, 148);
 }
 
-.form {
+.Edit .form {
   /* background: white; */
   max-width: 400px;
   margin: 0 auto;
 }
 
-p::before {
+.Edit p::before {
   display: inline;
 }
 
-input {
+.Edit input {
   display: block;
   box-sizing: border-box;
   width: 100%;
-  border-radius: 4px;
-  border: 1px solid black;
+  border-radius: 6px;
+  border: 0.5px solid rgb(225, 225, 225);
   padding: 10px 15px;
   margin-bottom: 10px;
   font-size: 14px;
+  box-shadow: 0 2px 5px -2px rgba(0, 0, 0, .5);
 }
 
-label {
+
+.Edit label {
   line-height: 2;
   text-align: left;
   display: block;
   margin-bottom: 13px;
   margin-top: 20px;
   color: black;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 200;
 }
 
-button[type="submit"],
-input[type="submit"] {
-  background: #ec5990;
-  color: black;
+.Edit button[type="submit"],
+.Edit input[type="submit"] {
+  background: rgb(25,118,210);
+  color: rgb(255, 255, 255);
   text-transform: uppercase;
+  font-weight: bold;
   border: none;
   margin-top: 40px;
   padding: 20px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 100;
   letter-spacing: 10px;
+  box-shadow: 0 4px 4px -2px rgba(0, 0, 0, .5);
 }
 
-button[type="submit"]:hover,
-input[type="submit"]:hover {
-  background: #bf1650;
+.Edit button[type="submit"]:hover,
+.Edit input[type="submit"]:hover {
+  background: rgb(44, 114, 37);
 }
 
-button[type="submit"]:active,
-input[type="button"]:active,
-input[type="submit"]:active {
+.Edit button[type="submit"]:active,
+.Edit input[type="button"]:active,
+.Edit input[type="submit"]:active {
   transition: 0.3s all;
   transform: translateY(3px);
   border: 1px solid transparent;
   opacity: 0.8;
 }
 
-input:disabled {
+.Edit input:disabled {
   opacity: 0.4;
 }
 
-input[type="button"]:hover {
+.Edit input[type="button"]:hover {
   transition: 0.3s all;
 }
 
-button[type="submit"],
-input[type="button"],
-input[type="submit"] {
+.Edit button[type="submit"],
+.Edit input[type="button"],
+.Edit input[type="submit"] {
   -webkit-appearance: none;
 }
 
-.App {
+.Edit .App {
   max-width: 600px;
   margin: 0 auto;
 }
 
-button[type="button"] {
+.Edit button[type="button"] {
   display: block;
   appearance: none;
   border: none;
@@ -97,11 +105,11 @@ button[type="button"] {
   border-radius: 4px;
 }
 
-hr {
+.Edit hr {
   margin-top: 30px;
 }
 
-button {
+.Edit button {
   display: block;
   appearance: none;
   margin-top: 40px;
