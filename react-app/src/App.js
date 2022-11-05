@@ -33,7 +33,7 @@ const App = () => {
       </BrowserRouter>
       </PersistGate>
      </Provider>
-     </React.StrictMode>
+    </React.StrictMode>
   );
 };
 
