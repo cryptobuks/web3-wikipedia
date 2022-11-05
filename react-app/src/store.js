@@ -20,4 +20,3 @@ export default configureStore({
   reducer: persistedReducer,
   middleware:[thunk]
 });
-

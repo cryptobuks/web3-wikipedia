@@ -11,6 +11,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 
 import './App.css';
 import store from './store';
+// import { Store } from "./contextStore";
 import IpfsTest from "./components/ipfs/IpfsTest";
 
 let persistor = persistStore(store);
@@ -21,17 +22,16 @@ const App = () => {
     <React.StrictMode>
      <Provider store={store}>
       <PersistGate loading = {null} persistor={persistor}>
-      <BrowserRouter>
-        <Routes>
-          <Route path={`/`} element={<Home />} />
-          <Route path={`/listview/`} element={<ListView />} />
-          <Route path={`/create`} element={<Create />} />
-          <Route path={`/nodify`} element={<Modify />} />
-          <Route path={`/detail/`} element={<Detail />} />
-          <Route path={`/ipfs/`} element={<IpfsTest />} />
-
-        </Routes>
-      </BrowserRouter>
+        <BrowserRouter>
+          <Routes>
+            <Route path={`/`} element={<Home />} />
+            <Route path={`/listview/`} element={<ListView />} />
+            <Route path={`/create`} element={<Create />} />
+            <Route path={`/nodify`} element={<Modify />} />
+            <Route path={`/detail/`} element={<Detail />} />
+            <Route path={`/ipfs/`} element={<IpfsTest />} />
+          </Routes>
+        </BrowserRouter>
       </PersistGate>
      </Provider>
     </React.StrictMode>

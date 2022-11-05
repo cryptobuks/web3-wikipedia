@@ -22,9 +22,9 @@ const ListView = () => {
           <Grid container direction="column">
             {
             <SearchedItem
-              title={page.title}
-              content={page.content}
-              key={page.key}
+              title={page.Title}
+              content={page.Contents}
+              key={page.Key}
             />
             }
           </Grid>

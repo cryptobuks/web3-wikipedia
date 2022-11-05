@@ -14,17 +14,19 @@ import Button from '@mui/material/Button';
 
 const Home = () => {
   const accountinitialState = store.getState().setter.word;
-  const [account, setAccount] = useState(accountinitialState);
+  const [account, setAccount] = useState();
   const [errorMessage, setErrorMessage] = useState(null);
   const [metaMaskFlag, setMetaMaskFlag] = useState(false);
 
   store.dispatch(inputWord(account));
   console.log(store.getState());
+  console.log(store.getState().setter.word);
   //console.log(account);
 
   useEffect(() => {
     const tmpFlag = window.ethereum && window.ethereum.isMetaMask;
     setMetaMaskFlag(tmpFlag);
+    connectWallet();
   }, []);
 
   const connectWallet = () => {
