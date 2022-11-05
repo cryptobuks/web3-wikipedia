@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { Grid } from '@mui/material';
 import SearchResultItem from "../components/SearchResultItem";
 
