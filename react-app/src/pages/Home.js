@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Header from "../components/Header";
 import ButtonComponent from "../components/ButtonComponent"
+import { Searcher } from '../Search';
 
 const Home = () => {
   const [account, setAccount] = useState(null);
