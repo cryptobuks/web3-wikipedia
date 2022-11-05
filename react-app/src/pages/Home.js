@@ -56,7 +56,7 @@ const Home = () => {
             <ButtonComponent
              color="primary"
               name="New"
-              to="/Edit"
+              to="/Create"
             />
           </Grid>
           <Grid item xs={12}>
