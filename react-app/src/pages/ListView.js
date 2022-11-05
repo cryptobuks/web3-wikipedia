@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Grid } from '@mui/material';
+import { Link } from "react-router-dom";
+
 import SearchedItem from "../components/SearchedItem";
 import GetSearchReults from "../components/GetSearchResults";
 
@@ -27,6 +29,7 @@ const ListView = () => {
           </Grid>
         ))
       }
+      <Link to="/Detail"><input class="form-control" placeholder="to detail"></input></Link>
     </div>
   )
 };
