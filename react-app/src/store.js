@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import searchReducer from './searchSlice';
+import walletReducer from './walletSlice'
+
 
 export default configureStore({
   reducer: {
-    searcher: searchReducer,
+    setter: walletReducer
   },
 });
 

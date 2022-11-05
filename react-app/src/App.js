@@ -14,7 +14,7 @@ import IpfsTest from "./components/IpfsTest";
 
 const App = () => {
   return (
-    // <Provider store={store}>
+     <Provider store={store}>
       <BrowserRouter>
         <Routes>
           <Route path={`/`} element={<Home />} />
@@ -25,7 +25,7 @@ const App = () => {
           <Route path={`/Ipfs/`} element={<IpfsTest />} />
         </Routes>
       </BrowserRouter>
-    // </Provider>
+     </Provider>
   );
 };
 
