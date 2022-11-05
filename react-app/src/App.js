@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 
 import './App.css';
 import store from './store';
-import IpfsTest from "./components/IpfsTest";
+import IpfsTest from "./components/ipfs/IpfsTest";
 
 
 const App = () => {
