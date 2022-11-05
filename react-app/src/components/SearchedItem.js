@@ -1,8 +1,8 @@
-import './css/SearchResultItem.css'
+import './css/SearchedItem.css';
 
-const SearchResultItem = (props) => {
+const SearchedItem = (props) => {
   return (
-    <div className="SearchResultItem">
+    <div className="SearchedItem">
       <a href="/Detail"></a>
       <h2>Title: { props.title }</h2>
       <div style={{ padding: 30 }}>
@@ -12,4 +12,4 @@ const SearchResultItem = (props) => {
   );
 };
 
-export default SearchResultItem;
+export default SearchedItem;

@@ -1,12 +1,18 @@
+import { useEffect, useState } from "react";
 import { Grid } from '@mui/material';
-import SearchResultItem from "../components/SearchResultItem";
+import SearchedItem from "../components/SearchedItem";
+import GetSearchReults from "../components/GetSearchResults";
 
 const ListView = () => {
-  // ダミーデータ
-  const pages = [
-    {title: "Japan", content: "hogehoge"},
-    {title: "Australia", content: "hogehoge"}
-  ];
+  // Dummy data
+  const [pages, setPages] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const _pages = await GetSearchReults();
+      setPages(_pages);
+      console.log(pages);
+    })()
+  },[])
 
   return (
     <div className="ListView">
@@ -14,7 +20,7 @@ const ListView = () => {
       {
         pages.map((page) =>(
           <Grid container direction="column">
-            <SearchResultItem
+            <SearchedItem
               title={page.title}
               content={page.content}
             />

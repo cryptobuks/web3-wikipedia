@@ -1,10 +1,10 @@
-.SearchResultItem {
+.SearchedItem {
     position: relative;
     margin-left: 5vh;
     margin-bottom: 2vh;
 }
 
-.SearchResultItem a {
+.SearchedItem a {
     position: absolute;
     top: 0;
     left: 0;

@@ -11,7 +11,7 @@ const IpfsCreateObject = async (body, bucketName, key, contentType) => {
       ContentType: contentType
     };
 
-    //upload
+    // upload
     const _res = s3.putObject(params, function(err, data) {
       if (err) {
         console.log(err, err.stack);
