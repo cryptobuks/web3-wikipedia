@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import ListView from "./pages/ListView";
 import Detail from "./pages/Detail";
 import Edit from "./pages/Edit";
-import Ipfs from "./model/Ipfs";
+import IpfsTest from "./components/IpfsTest";
 
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
         <Route path={`/ListView/`} element={<ListView />} />
         <Route path={`/Edit`} element={<Edit />} />
         <Route path={`/Detail/`} element={<Detail />} />
-        <Route path={`/Ipfs/`} element={<Ipfs />} />
+        <Route path={`/Ipfs/`} element={<IpfsTest />} />
       </Routes>
     </BrowserRouter>
   );
