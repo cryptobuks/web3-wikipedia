@@ -5,7 +5,7 @@ const ButtonComponent = (props) => {
   return (
     <Button
       variant="contained"
-      color="primary"
+      color={ props.color }
       component={Link}
       to={ props.to }
       size="large"

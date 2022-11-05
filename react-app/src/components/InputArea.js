@@ -4,5 +4,5 @@ import './css/InputForm.css';
 
 export default function InputArea(props){
     const methods = useFormContext()
-    return <input {...methods.register(props.val,props.valid)}/>
+    return <input id={props.id} {...methods.register(props.val)}/>
 }
