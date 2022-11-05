@@ -29,7 +29,9 @@ const ListView = () => {
           </Grid>
         ))
       }
-      <Link to="/Detail"><input class="form-control" placeholder="to detail"></input></Link>
+      {/*
+        <Link to="/Detail"><input class="form-control" placeholder="to detail"></input></Link>
+      */}
     </div>
   )
 };
