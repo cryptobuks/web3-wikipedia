@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import React, { Component } from 'react';
 import Home from "./pages/Home";
 import ListView from "./pages/ListView";
@@ -24,11 +24,11 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path={`/`} element={<Home />} />
-          <Route path={`/ListView/`} element={<ListView />} />
-          <Route path={`/Edit`} element={<Edit />} />
-          <Route path={`/Modify`} element={<Modify />} />
-          <Route path={`/Detail/`} element={<Detail />} />
-          <Route path={`/Ipfs/`} element={<IpfsTest />} />
+          <Route path={`/listview/`} element={<ListView />} />
+          <Route path={`/create`} element={<Create />} />
+          <Route path={`/nodify`} element={<Modify />} />
+          <Route path={`/detail/`} element={<Detail />} />
+          <Route path={`/ipfs/`} element={<IpfsTest />} />
         </Routes>
       </BrowserRouter>
       </PersistGate>

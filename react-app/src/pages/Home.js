@@ -8,6 +8,7 @@ import store from '../store';
 import { inputWord } from "../walletSlice";
 import SearchBar from "../components/SearchBar";
 import { Searcher } from '../Search';
+import Button from '@mui/material/Button';
 
 const Home = () => {
   const accountinitialState = store.getState().setter.word;
@@ -41,28 +42,27 @@ const Home = () => {
       <Box mt={10}>
         <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
           <Grid item xs={12}>
-            <div>{account}</div>
-            <div>
               {account ? (
-                <button type="button" class="btn btn-dark">Connected</button>
+                <Button disabled>Connected {account}</Button>
               ) : (
-                <button type="button" class="btn btn-secondary" onClick={connectWallet}>Connected Wallet</button>
+                <Button onClick={connectWallet}>Connected Wallet</Button>
               )}
-            </div>
+          </Grid>
+
+          <Grid item xs={12}>
+            {/* reduxできるまで一時的に以下のように記載 */}
+                  {/* <Searcher /> */}
+            <SearchBar />
           </Grid>
           <Grid item xs={12}>
             <ButtonComponent
              color="primary"
               name="New"
-              to="/Edit"
+              to="/edit"
             />
           </Grid>
-          <Grid item xs={12}>
-            {/* reduxできるまで一時的に以下のように記載 */}
-                  {/* <Searcher /> */}
-            <SearchBar />
-            {/* <Link to="/ListView"><input class="form-control" placeholder="検索"></input></Link> */}
-          </Grid>
+
+          
         </Grid>
       </Box>
     </div>
