@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { BottomNavigation } from "@mui/material";
 import {useForm,FormProvider} from "react-hook-form";
 import { useNavigate, useLocation } from "react-router-dom"
@@ -16,6 +16,7 @@ const Detail = () => {
   const { state } = useLocation();
   const title = state.title;
   const contents = state.contents;
+  const key = state.key;
 
   // contents example -> fetch from the ipfs
   // to do: get the data from ipfs
@@ -40,30 +41,36 @@ const Detail = () => {
     // to do:send the good state to ipfs and connect with contract
   }
 
+  useEffect(() => {
+    const getVoteFromContract = async () => {
+      
+    };
+  }, []);
+
   return (
     <div className="Detail">
       <Header />
       <Box mt={10}>
         <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
-        <PageTitle title={title}></PageTitle>
-          <Grid item xs={12}>
-      <p>{contents}</p>
-      {
-        contents_example.closed ? (
-          <div className="NotClosed">
-          <button type="button">Good:{goodState}</button>
-          <button type="button">Bad:{badState}</button>
-          </div>
-        ) : (
-          <div className="Closed">
-          <button type="button" onClick={updateGood}>Good:{goodState}</button>
-          <button type="button" onClick={updateBad}>Bad:{badState}</button>
-          </div>
-        )
-      }
-      <BackHome />
-      <button onClick={()=>{navigate("/Modify",{state:{title:title,contents:contents}})}}>Modify</button>
-        </Grid>
+          <PageTitle title={title}></PageTitle>
+            <Grid item xs={12}>
+              <p>{contents}</p>
+              {
+                contents_example.closed ? (
+                  <div className="NotClosed">
+                  <button type="button">Good: {goodState}</button>
+                  <button type="button">Bad: {badState}</button>
+                  </div>
+                ) : (
+                  <div className="Closed">
+                  <button type="button" onClick={updateGood}>Good:{goodState}</button>
+                  <button type="button" onClick={updateBad}>Bad:{badState}</button>
+                  </div>
+                )
+              }
+              <BackHome />
+              <button onClick={()=>{navigate("/Modify",{state:{title:title,contents:contents}})}}>Modify</button>
+          </Grid>
         </Grid>
       </Box>
     </div>

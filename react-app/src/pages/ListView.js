@@ -10,7 +10,7 @@ import PageTitle from "../components/PageTitle";
 
 const ListView = () => {
   // Dummy data
-  const [pages, setPages] = useState([{title: "", content: ""}]);
+  const [pages, setPages] = useState([{title: "", content: "", key: ""}]);
   useEffect(() => {
     (async () => {
       await GetSearchReults(pages, setPages);
@@ -19,6 +19,24 @@ const ListView = () => {
 
   return (
     <div className="ListView">
+      {/*
+      <h1>ListView</h1>
+      {
+        pages.map((page) =>(
+          <Grid container direction="column">
+            {
+            <SearchedItem
+              title={page.Title}
+              content={page.Contents}
+              key={page.Key}
+            />
+            }
+          </Grid>
+        ))
+      }
+        <Link to="/Detail"><input class="form-control" placeholder="to detail"></input></Link>
+      */}
+
       <Header /> 
       <Box mt={10}>
         <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
@@ -30,6 +48,7 @@ const ListView = () => {
                 <SearchedItem
                   title={page.title}
                   content={page.content}
+                  key={page.Key}
                 />
                 }
               </Grid>

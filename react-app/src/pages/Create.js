@@ -1,4 +1,4 @@
-import { InputForm } from "../components/InputForm";
+import InputForm from "../components/InputForm";
 import Header from "../components/Header";
 import PageTitle from "../components/PageTitle";
 import Grid from '@mui/material/Grid';
