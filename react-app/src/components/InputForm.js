@@ -55,11 +55,11 @@ const InputForm = () => {
           })}
         >
           <label>Title</label>
-          <InputArea id="title" val="Title" valid={{ required: true }} />
+          <InputArea id="title" val="title" valid={{ required: true }} />
           {errors.Title && <span>You need to input a title</span>}
 
           <label>Contents</label>
-          <InputArea id="contents" val="Contents" valid={{ required: true }} />
+          <InputArea id="content" val="content" valid={{ required: true }} />
           {errors.InputArea && <span>You need to input some contents</span>}
 
           <input type="submit" />

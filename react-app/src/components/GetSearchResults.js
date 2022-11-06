@@ -5,8 +5,8 @@ import IpfsGetObject from "./ipfs/IpfsGetObject";
 const GetSearchReults = async (pages, setPages) => {
   // Now, using dummy data
   let dummy = [
-    {Title: "Japan", Contents: "hogehoge", Key: "key"},
-    {Title: "Australia", Contents: "hogehoge", Key: "key"}
+    {title: "Japan", content: "hogehoge", key: "key"},
+    {title: "Australia", content: "hogehoge", key: "key"}
   ];
   setPages(dummy);
   await IpfsGetObject(setPages, "web3-wiki", "test-content-1.json", dummy);
