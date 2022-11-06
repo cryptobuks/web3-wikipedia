@@ -12,6 +12,7 @@ import Box from '@mui/material/Box';
 import PageTitle from "../components/PageTitle";
 import Button from '@mui/material/Button';
 import ButtonComponent from "../components/ButtonComponent"
+import Stack from '@mui/material/Stack';
 
 const Detail = () => {
   const { state } = useLocation();
@@ -54,23 +55,30 @@ const Detail = () => {
       <Box mt={10}>
         <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
           <PageTitle title={title}></PageTitle>
-          <Grid>
+          <Grid mt={20}>
             {contents}
             </Grid>
+            <Grid mt={20}>
               {
                 contents_example.closed ? (
                   <div className="NotClosed">
-                  <Button variant="contained" type="button">Good: {goodState}</Button>
-                  <Button variant="contained" type="button">Bad: {badState}</Button>
+                  <Stack spacing={2} direction="row">
+                  <Button variant="contained" color="error" type="button">Good: {goodState}</Button>
+                  <Button variant="contained" color="info" type="button">Bad: {badState}</Button>
+                  </Stack>
                   </div>
                 ) : (
                   <div className="Closed">
+                    <Stack spacing={2} direction="row">
                     <Button disabled variant="contained" type="button" onClick={updateGood}>Good:{goodState}</Button>
                     <Button disabled variant="contained" type="button" onClick={updateBad}>Bad:{badState}</Button>
+                    </Stack>
                   </div>
                 )
               }
-
+              </Grid>
+              <Grid mt={10}>
+              <Stack spacing={2} direction="row">
               {
                 contents_example.closed ? (
                   <div className="NotClosed">
@@ -82,8 +90,10 @@ const Detail = () => {
                   </div>
                 )
               }
-            <ButtonComponent color="success" name="Back Home" to="/" />
+            <ButtonComponent color="success" name="Back Home" to="/"/>
             <Button variant="contained" onClick={()=>{navigate("/Modify",{state:{title:title,contents:contents}})}}>Modify</Button>
+            </Stack>
+        </Grid>
         </Grid>
       </Box>
     </div>
