@@ -26,7 +26,7 @@ const App = () => {
             <Route path={`/`} element={<Home />} />
             <Route path={`/listview/`} element={<ListView />} />
             <Route path={`/create`} element={<Create />} />
-            <Route path={`/nodify`} element={<Modify />} />
+            <Route path={`/modify`} element={<Modify />} />
             <Route path={`/detail/`} element={<Detail />} />
             <Route path={`/ipfs/`} element={<IpfsTest />} />
           </Routes>

@@ -1,22 +1,27 @@
 import Box from '@mui/material/Box';
 import { Link } from "react-router-dom";
-
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 import './css/SearchedItem.css';
-
+import Typography from '@mui/material/Typography';
+import * as React from 'react';
+import Paper from '@mui/material/Paper';
+import { styled, Stack } from '@mui/system';
 
 const SearchedItem = (props) => {
   return (
     <Box>
-      <div className="SearchedItem">
-    <Link to={"/Detail"} state={{ title: props.title, contents: props.content }}>
-          <h2>Title: { props.title }</h2>
-        </Link>
-        <div style={{ padding: 30 }}>
-          <h3>Content: { props.content }</h3>
-        </div>
-      {/* <a href="/Detail"></a> */}
-      </div>
-    </Box>
+     <ListItemText primary={
+     <Link to={"/detail"} state={{ title: props.title, contents: props.content }}>
+      <Typography
+                  sx={{  fontSize: 34 }}
+                  component="span"
+                  variant="body2"
+                  >
+        {props.title}
+      </Typography>
+     </Link>} secondary={props.content} sx={{ padding: 3}}/>
+</Box>
   );
 };
 
