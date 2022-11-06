@@ -110,11 +110,24 @@ contract DAO {
         proposalRegistry[_proposalId].remainingDays = 0;
         closeProposal(_proposalUri);
     }
-    
-    function viewProposalInformation(string calldata _proposalUri) external {
+
+    // function viewProposalInformation(string calldata _proposalUri) external {
+    //     bytes32 _proposalId = keccak256(abi.encode(_proposalUri));
+    //     require(proposalRegistry[_proposalId].isExist == true);  // The proposal exists
+
+    //     emit proposalInfo(_proposalId, proposalRegistry[_proposalId].contentId, proposalRegistry[_proposalId].proposalOwner, proposalRegistry[_proposalId].remainingDays, proposalRegistry[_proposalId].upVotes, proposalRegistry[_proposalId].downVotes);
+    // }
+    function viewProposalInformation(string calldata _proposalUri) external view returns (bytes32, bytes32, address, uint256, uint256, uint256) {
         bytes32 _proposalId = keccak256(abi.encode(_proposalUri));
         require(proposalRegistry[_proposalId].isExist == true);  // The proposal exists
 
-        emit proposalInfo(_proposalId, proposalRegistry[_proposalId].contentId, proposalRegistry[_proposalId].proposalOwner, proposalRegistry[_proposalId].remainingDays, proposalRegistry[_proposalId].upVotes, proposalRegistry[_proposalId].downVotes);
+        return(
+            _proposalId,
+            proposalRegistry[_proposalId].contentId,
+            proposalRegistry[_proposalId].proposalOwner,
+            proposalRegistry[_proposalId].remainingDays,
+            proposalRegistry[_proposalId].upVotes,
+            proposalRegistry[_proposalId].downVotes
+        );
     }
 }
