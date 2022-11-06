@@ -11,6 +11,10 @@ import { Modal,Box,Typography } from "@mui/material";
 import Header from "../components/Header";
 import '../components/css/font.css'
 import PageTitle from "../components/PageTitle";
+import InputForm from "../components/InputForm";
+import Grid from '@mui/material/Grid';
+import ButtonComponent from "../components/ButtonComponent";
+import Button from '@mui/material/Button';
 import IpfsCreateObject from "../components/ipfs/IpfsCreateObject";
 
 const Modify = () => {
@@ -20,17 +24,6 @@ const Modify = () => {
 
     //values from the provider
     const walletId = store.getState().setter.word;
-    const style = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-      };
 
     //initial the value for store change of db
     const initialTitle = location.state ? location.state.title : "NaN";
@@ -80,7 +73,13 @@ const Modify = () => {
         await daoInst.openProposal(proposalId, contentId, 3);
     }
 
-    return <div className="Modify">
+    return (
+    <div className="Modify">
+        <Header />
+        <Box mt={10}>
+        <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
+            <PageTitle title="Modify"></PageTitle>
+        </Grid>
         <FormProvider {...methods}>
             <form onSubmit={handleSubmit(async(data)=>{
                 data = JSON.stringify(data);
@@ -98,30 +97,31 @@ const Modify = () => {
                 await deleteDoc(doc(usersRef,walletId));
                 navigate("/");
             })}>
-                <h1>Modify Page</h1>
-                <label>Title</label>
-                <InputArea val="title" valid={{required:true}}/>
-                {errors.Title && <span>You need to input a title</span>}
-                <label>Contents</label>
-                <InputArea val="content" valid={{required:true}}/>
-                {errors.InputArea && <span>You need to input some contents</span>}
-                <input type="submit" value="submit"/>
+            <InputForm /> 
             </form>
         </FormProvider>
-        <button onClick={call_modal}>Save as Draft</button>
+        
+
+        <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
+        <Button variant="contained" onClick={call_modal}>Save as Draft</Button>
         <Modal open={modalIsopen} onClose={modalIsopen}>
-        <Box sx={style}>
+        <Box>
             <Typography id="modal-modal-title" variant="h6" component="h2">
             Confirm to save the draft
             </Typography>
-            <button onClick = {submit_Modify}>Yes</button>
-            <button onClick = {()=>{
+            <Button variant="contained" onClick = {submit_Modify}>Yes</Button>
+            <Button variant="contained" onClick = {()=>{
                 setModalOpen(false);
-            }}>No</button>
+            }}>No</Button>
         </Box>
         </Modal>
-        <BackHome />
+          <Grid item xs={12}>
+              <ButtonComponent color="success" name="Back Home" to="/" />
+          </Grid>
+        </Grid>
+        </Box>
     </div>
-}
+    )
+};
 
 export default Modify;
