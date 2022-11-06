@@ -1,21 +1,29 @@
-import Popup from "../components/Popup"
 import React,{useState} from 'react'
-import BackHome from '../components/BackHome'
 import { BottomNavigation } from "@mui/material";
 import {useForm,FormProvider} from "react-hook-form";
-import {useNavigate} from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
+import Header from "../components/Header";
+
+import Popup from "../components/Popup"
+import BackHome from '../components/BackHome'
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import PageTitle from "../components/PageTitle";
+
 
 const Detail = () => {
+  const { state } = useLocation();
+  const title = state.title;
+  const contents = state.contents;
+
   // contents example -> fetch from the ipfs
   // to do: get the data from ipfs
-  const contents_example = {title:"apple",contents:"This is an apple",closed:true};
-  // to do: get the exist goodinitState and badinitState from contract
+  const contents_example = { title: "apple", contents: "This is an apple", closed: true };
+
+  // TODO: get the exist goodinitState and badinitState from contract
   const goodinitState = 2;
   const badinitState = 2;
-
-  //
-  const title = contents_example.title;
-  const contents = contents_example.contents;
 
   // For Botton status
   const [goodState,setGood] = useState(goodinitState);
@@ -34,7 +42,11 @@ const Detail = () => {
 
   return (
     <div className="Detail">
-      <h1>{title}</h1>
+      <Header />
+      <Box mt={10}>
+        <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
+        <PageTitle title={title}></PageTitle>
+          <Grid item xs={12}>
       <p>{contents}</p>
       {
         contents_example.closed ? (
@@ -51,6 +63,9 @@ const Detail = () => {
       }
       <BackHome />
       <button onClick={()=>{navigate("/Modify",{state:{title:title,contents:contents}})}}>Modify</button>
+        </Grid>
+        </Grid>
+      </Box>
     </div>
   )
 };

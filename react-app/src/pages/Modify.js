@@ -8,6 +8,9 @@ import {useForm,FormProvider} from "react-hook-form";
 import InputArea from "../components/InputArea";
 import { async } from "@firebase/util";
 import { Modal,Box,Typography } from "@mui/material";
+import Header from "../components/Header";
+import '../components/css/font.css'
+import PageTitle from "../components/PageTitle";
 
 const Modify = () => {
     // values from the previous page
