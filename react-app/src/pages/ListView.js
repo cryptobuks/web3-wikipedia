@@ -35,9 +35,6 @@ const ListView = () => {
               </Grid>
             ))
           }
-      {/*
-        <Link to="/Detail"><input class="form-control" placeholder="to detail"></input></Link>
-      */}
       </Grid>
       </Box>
     </div>
