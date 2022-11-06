@@ -11,6 +11,7 @@ import { Modal,Box,Typography } from "@mui/material";
 import Header from "../components/Header";
 import '../components/css/font.css'
 import PageTitle from "../components/PageTitle";
+import IpfsCreateObject from "../components/ipfs/IpfsCreateObject";
 
 const Modify = () => {
     // values from the previous page
@@ -38,6 +39,7 @@ const Modify = () => {
     const [contents,setContents] = useState(initialcontents);
     const usersRef = collection(db,"users");
 
+    const daoInst = store.getState().setter.daoInst;
 
     useEffect(()=>{
         const fetch_data = async () => {
@@ -52,7 +54,7 @@ const Modify = () => {
 
     // values for form
     const [value,setvalue] = useState(null);
-    const methods = useForm({defaultValues:{Title:title,Contents:contents}});
+    const methods = useForm({defaultValues:{title:title,content:contents}});
     const {register,handleSubmit,formState:{errors}} = methods;
 
     // values for modal
@@ -66,27 +68,42 @@ const Modify = () => {
     const submit_Modify = async() => {
         const docRef = await setDoc(doc(usersRef,walletId),{
             title:title,
-            contents:contents,
+            content:contents,
         })
         console.log(docRef);
         setModalOpen(false);
     }
 
+    const contractOpenProposal = async (key) => {
+        const proposalId = "0";
+        const contentId = "cloud";
+        await daoInst.openProposal(proposalId, contentId, 3);
+    }
+
     return <div className="Modify">
         <FormProvider {...methods}>
             <form onSubmit={handleSubmit(async(data)=>{
-                        console.log(data)
-                        setvalue(data);
-                        await deleteDoc(doc(usersRef,walletId));
-                        //TO DO: send value to ipfs
-                        navigate("/");
-                    })}>
+                data = JSON.stringify(data);
+                console.log(data)
+                setvalue(data);
+
+                // Dummy settings
+                const bucket = "web3-wiki";
+                const key = "test-content-1.json";
+                const updatedKey = `modified-${key}`;
+                IpfsCreateObject(data, bucket, updatedKey, "text/plain");
+                contractOpenProposal(key);
+                alert(`Proposal to modify ${key} has opened!`);
+
+                await deleteDoc(doc(usersRef,walletId));
+                navigate("/");
+            })}>
                 <h1>Modify Page</h1>
                 <label>Title</label>
-                <InputArea val="Title" valid={{required:true}}/>
+                <InputArea val="title" valid={{required:true}}/>
                 {errors.Title && <span>You need to input a title</span>}
                 <label>Contents</label>
-                <InputArea val="Contents" valid={{required:true}}/>
+                <InputArea val="content" valid={{required:true}}/>
                 {errors.InputArea && <span>You need to input some contents</span>}
                 <input type="submit" value="submit"/>
             </form>
