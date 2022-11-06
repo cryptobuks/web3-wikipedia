@@ -43,7 +43,7 @@ const Home = () => {
 
   return (
     <div className="Home">
-      <Header /> 
+      <Header />
       <Box mt={10}>
         <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
             <Typography component="div">
@@ -56,10 +56,10 @@ const Home = () => {
             </Grid>
             <Typography component="div">
               <Box id = "sub-message" textAlign="justify" m={1} mt={5}>
-              sleepy sleepy sleepy sleepy sleepy ......I'll fill in something here later.I'll fill in something here later.I'll fill in something here later.
+              This is the future wikipedia which connected with the web4 network.
               </Box>
               <Box id = "sub-message" textAlign="justify" m={1}>
-              I'll fill in something here later.I'll fill in something here later.
+              Your knowledge will not only help other people, but also satisfy yourself.
               </Box>
             </Typography>
 

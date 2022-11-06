@@ -31,6 +31,10 @@ const Modify = () => {
         p: 4,
       };
 
+    // check if has some data in location and wallet
+    const checkerror = (walletId != null) && (location.state);
+
+
     //initial the value for store change of db
     const initialTitle = location.state ? location.state.title : "NaN";
     const initialcontents = location.state ? location.state.contents : "NaN";
@@ -72,7 +76,8 @@ const Modify = () => {
         setModalOpen(false);
     }
 
-    return <div className="Modify">
+    return( checkerror
+    ? <div className="Modify">
         <FormProvider {...methods}>
             <form onSubmit={handleSubmit(async(data)=>{
                         console.log(data)
@@ -105,6 +110,18 @@ const Modify = () => {
         </Modal>
         <BackHome />
     </div>
+    :
+    <div>
+        <Modal open={true}>
+        <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+            You don't have any selected contents.
+            </Typography>
+            <BackHome />
+        </Box>
+        </Modal>
+    </div>
+    )
 }
 
 export default Modify;
