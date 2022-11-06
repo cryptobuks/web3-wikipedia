@@ -1,9 +1,14 @@
 import React,{useState} from 'react'
 import { BottomNavigation } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom"
+import Header from "../components/Header";
 
 import Popup from "../components/Popup"
 import BackHome from '../components/BackHome'
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import PageTitle from "../components/PageTitle";
 
 
 const Detail = () => {
@@ -36,7 +41,11 @@ const Detail = () => {
 
   return (
     <div className="Detail">
-      <h1>{title}</h1>
+      <Header />
+      <Box mt={10}>
+        <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
+        <PageTitle title={title}></PageTitle>
+          <Grid item xs={12}>
       <p>{contents}</p>
       {
         contents_example.closed ? (
@@ -53,6 +62,9 @@ const Detail = () => {
       }
       <BackHome />
       <button onClick={()=>{navigate("/Modify",{state:{title:title,contents:contents}})}}>Modify</button>
+        </Grid>
+        </Grid>
+      </Box>
     </div>
   )
 };

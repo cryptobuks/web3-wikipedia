@@ -1,5 +1,8 @@
 import {useLocation} from "react-router-dom"
 import store from "../store"
+import Header from "../components/Header";
+import '../components/css/font.css'
+import PageTitle from "../components/PageTitle";
 
 const Modify = () => {
     let location = useLocation();
