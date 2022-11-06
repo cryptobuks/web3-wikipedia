@@ -25,6 +25,10 @@ const Modify = () => {
     //values from the provider
     const walletId = store.getState().setter.word;
 
+    // check if has some data in location and wallet
+    const checkerror = (walletId != null) && (location.state);
+
+
     //initial the value for store change of db
     const initialTitle = location.state ? location.state.title : "NaN";
     const initialcontents = location.state ? location.state.contents : "NaN";
@@ -33,6 +37,18 @@ const Modify = () => {
     const usersRef = collection(db,"users");
 
     const daoInst = store.getState().setter.daoInst;
+
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+      };
 
     useEffect(()=>{
         const fetch_data = async () => {
@@ -73,8 +89,8 @@ const Modify = () => {
         await daoInst.openProposal(proposalId, contentId, 3);
     }
 
-    return (
-    <div className="Modify">
+    return (checkerror
+    ? <div className="Modify">
         <Header />
         <Box mt={10}>
         <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
@@ -120,6 +136,17 @@ const Modify = () => {
           </Grid>
         </Grid>
         </Box>
+    </div>
+    :
+    <div>
+        <Modal open={true}>
+        <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+            You don't have any selected contents.
+            </Typography>
+            <BackHome />
+        </Box>
+        </Modal>
     </div>
     )
 };
