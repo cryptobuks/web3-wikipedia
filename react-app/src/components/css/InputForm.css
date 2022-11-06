@@ -3,7 +3,7 @@
   margin: 0 auto;
 }
 
-.Create #contents{
+.Create #content{
   height: 550px;
 }
 
@@ -15,7 +15,6 @@
 }
 
 .Create .form {
-  /* background: white; */
   max-width: 800px;
   margin: 0 auto;
 }
