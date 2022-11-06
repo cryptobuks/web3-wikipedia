@@ -10,21 +10,17 @@ import { ethers } from "ethers";
 import BackHome from "./BackHome";
 import IpfsCreateObject from "./ipfs/IpfsCreateObject";
 import store from "../store";
-import daoArtifact from "../contracts/DAO.json";
-
-const daoAbi = daoArtifact.abi;
-const daoAddr = "0xB4691AdC0641371C306654f92cf5b07D09E5E411";
 
 
-const InputForm = (props) => {
+const InputForm = () => {
   const navigate = useNavigate();
 
-  const [daoInst, setDaoInst] = useState();
   const [value, setvalue] = useState(null);
 
   const account = store.getState().setter.word;
   const provider = store.getState().setter.provider;
   const signer = store.getState().setter.signer;
+  const daoInst = store.getState().setter.daoInst;
 
   const methods = useForm();
   const {
@@ -37,19 +33,6 @@ const InputForm = (props) => {
     const contentId = "cloud";
     await daoInst.createDocument(key, contentId);
   }
-
-  useEffect(() => {
-    const _setDaoInst = async() => {
-      console.log(account);
-      if (account) {
-        console.log('called')
-        await setDaoInst(
-          new ethers.Contract(daoAddr, daoAbi, props.signer)
-        );
-      }
-    };
-    _setDaoInst();
-  },[provider, signer, account]);
 
   return (
     <div>
@@ -64,6 +47,7 @@ const InputForm = (props) => {
             const bucket = "web3-wiki";
             const key = "test-content-1.json";
 
+            console.log(daoInst);
             IpfsCreateObject(data, bucket, key, "text/plain");
             contractCreateDocument(key);
             alert(`${key} has uploaded!`);

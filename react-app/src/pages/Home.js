@@ -10,10 +10,13 @@ import { useDispatch,useSelector } from "react-redux";
 import Header from "../components/Header";
 import ButtonComponent from "../components/ButtonComponent"
 import store from '../store';
-import { inputWord, inputProvider, inputSigner } from "../walletSlice";
+import { inputWord, inputProvider, inputSigner, inputDaoInst } from "../walletSlice";
 import SearchBar from "../components/SearchBar";
 import { Searcher } from '../Search';
+import daoArtifact from "../contracts/DAO.json";
 
+const daoAbi = daoArtifact.abi;
+const daoAddr = "0xB4691AdC0641371C306654f92cf5b07D09E5E411";
 
 const Home = () => {
   const [account, setAccount] = useState();
@@ -22,10 +25,12 @@ const Home = () => {
   const [signer, setSigner] = useState();
   const [chainId, setChainId] = useState();
   const [chainName, setChainName] = useState();
+  const [daoInst, setDaoInst] = useState();
 
   store.dispatch(inputWord(account));
   store.dispatch(inputProvider(provider));
   store.dispatch(inputSigner(signer));
+  store.dispatch(inputDaoInst(daoInst));
   console.log(store.getState());
 
   const connectWallet = () => {
@@ -75,6 +80,19 @@ const Home = () => {
       setChainName(result.name)
     })
   }, [provider]);
+
+  useEffect(() => {
+    const _setDaoInst = async() => {
+      console.log(account);
+      if (account) {
+        console.log('called')
+        await setDaoInst(
+          new ethers.Contract(daoAddr, daoAbi, signer)
+        );
+      }
+    };
+    _setDaoInst();
+  },[provider, signer, account]);
 
   return (
     <div className="Home">

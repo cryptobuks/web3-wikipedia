@@ -5,7 +5,8 @@ export const walletSlice = createSlice({
   initialState: {
     word: null,
     provider: null,
-    signer: null
+    signer: null,
+    daoInst: null,
     // if you add reducer,please add state
   },
   reducers: {
@@ -19,9 +20,12 @@ export const walletSlice = createSlice({
     inputSigner: (state, action) => {
       state.signer = action.payload;
     },
+    inputDaoInst: (state, action) => {
+      state.daoInst = action.payload;
+    },
   }
 })
 
-export const {inputWord, inputProvider, inputSigner} = walletSlice.actions
+export const {inputWord, inputProvider, inputSigner, inputDaoInst} = walletSlice.actions
 export const selectWord = (state) => state.searcher.word
 export default walletSlice.reducer

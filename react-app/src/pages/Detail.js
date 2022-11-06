@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { BottomNavigation } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom"
 
@@ -34,6 +34,12 @@ const Detail = () => {
     setBad(badState+1);
     // to do:send the good state to ipfs and connect with contract
   }
+
+  useEffect(() => {
+    const getVoteFromContract = async () => {
+      
+    };
+  }, []);
 
   return (
     <div className="Detail">
