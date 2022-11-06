@@ -4,7 +4,7 @@ import BackHome from "../components/BackHome";
 import db from '../model/firebase';
 import {collection,addDoc,deleteDoc,doc,setDoc,getDoc} from "firebase/firestore";
 import { useEffect, useState } from "react";
-import {useForm,FormProvider} from "react-hook-form";
+import {useForm,FormProvider, set} from "react-hook-form";
 import InputArea from "../components/InputArea";
 import { async } from "@firebase/util";
 import { Modal,Box,Typography } from "@mui/material";
@@ -54,16 +54,22 @@ const Modify = () => {
         const fetch_data = async () => {
             const docSnap = await getDoc(doc(usersRef,walletId));
             if (docSnap.exists()){
-                setTitle(docSnap.data().title);
-                setContents(docSnap.data().contents);
+                const newTitle = await docSnap.data().title;
+                const newContent = await docSnap.data().content;
+                setTitle((pre_state)=>newTitle);
+                setContents((pre_state)=>newContent);
             }
         };
         fetch_data();
     },[]);
 
+
+
     // values for form
     const [value,setvalue] = useState(null);
     const methods = useForm({defaultValues:{title:title,content:contents}});
+    methods.setValue('content',contents);
+    methods.setValue('title',title);
     const {register,handleSubmit,formState:{errors}} = methods;
 
     // values for modal
@@ -75,6 +81,10 @@ const Modify = () => {
     }
 
     const submit_Modify = async() => {
+        console.log(methods.getValues());
+        await setTitle(methods.getValues().title);
+        await setContents(methods.getValues().content);
+
         const docRef = await setDoc(doc(usersRef,walletId),{
             title:title,
             content:contents,
@@ -99,7 +109,7 @@ const Modify = () => {
         <FormProvider {...methods}>
             <form onSubmit={handleSubmit(async(data)=>{
                 data = JSON.stringify(data);
-                console.log(data)
+                //console.log(data)
                 setvalue(data);
 
                 // Dummy settings
@@ -113,15 +123,14 @@ const Modify = () => {
                 await deleteDoc(doc(usersRef,walletId));
                 navigate("/");
             })}>
-            <InputForm /> 
+            <InputForm />
             </form>
         </FormProvider>
-        
 
         <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
         <Button variant="contained" onClick={call_modal}>Save as Draft</Button>
         <Modal open={modalIsopen} onClose={modalIsopen}>
-        <Box>
+        <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
             Confirm to save the draft
             </Typography>
