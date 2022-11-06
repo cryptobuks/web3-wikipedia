@@ -2,6 +2,7 @@ import Popup from "../components/Popup"
 import React,{useState} from 'react'
 import BackHome from '../components/BackHome'
 import { BottomNavigation } from "@mui/material";
+import {useForm,FormProvider} from "react-hook-form";
 import {useNavigate} from "react-router-dom"
 
 const Detail = () => {

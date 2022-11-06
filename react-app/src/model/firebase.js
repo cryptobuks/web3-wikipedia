@@ -14,7 +14,7 @@ const firebaseConfig = {
   storageBucket: "web3-wikipedia.appspot.com",
   messagingSenderId: "93277082662",
   appId: "1:93277082662:web:1bc291200c228c22de02e7",
-  measurementId: "G-3DX5WHZQDJ"
+  measurementId: "G-3DX5WHZQDJ",
 };
 
 // Initialize Firebase
