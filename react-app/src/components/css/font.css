@@ -1,0 +1,19 @@
+#service-name{
+    font-size: 30px;
+    font-family: 'Pacifico', cursive;
+}
+
+#page-title{
+    font-size: 40px;
+    font-family: 'Righteous', cursive;
+}
+
+
+#main-message{
+    font-size: 60px;
+    font-family: 'Righteous', cursive;
+}
+
+#sub-message{
+    font-family: 'Raleway', sans-serif;
+}

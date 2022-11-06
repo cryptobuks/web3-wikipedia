@@ -15,7 +15,6 @@ import IpfsTest from "./components/ipfs/IpfsTest";
 
 let persistor = persistStore(store);
 
-
 const App = () => {
   return (
     <React.StrictMode>
@@ -29,7 +28,6 @@ const App = () => {
           <Route path={`/nodify`} element={<Modify />} />
           <Route path={`/detail/`} element={<Detail />} />
           <Route path={`/ipfs/`} element={<IpfsTest />} />
-
         </Routes>
       </BrowserRouter>
       </PersistGate>
