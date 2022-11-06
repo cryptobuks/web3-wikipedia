@@ -11,6 +11,10 @@ import { Modal,Box,Typography } from "@mui/material";
 import Header from "../components/Header";
 import '../components/css/font.css'
 import PageTitle from "../components/PageTitle";
+import InputForm from "../components/InputForm";
+import Grid from '@mui/material/Grid';
+import ButtonComponent from "../components/ButtonComponent";
+import Button from '@mui/material/Button';
 import IpfsCreateObject from "../components/ipfs/IpfsCreateObject";
 
 const Modify = () => {
@@ -20,6 +24,20 @@ const Modify = () => {
 
     //values from the provider
     const walletId = store.getState().setter.word;
+
+    // check if has some data in location and wallet
+    const checkerror = (walletId != null) && (location.state);
+
+
+    //initial the value for store change of db
+    const initialTitle = location.state ? location.state.title : "NaN";
+    const initialcontents = location.state ? location.state.contents : "NaN";
+    const [title,setTitle] = useState(initialTitle);
+    const [contents,setContents] = useState(initialcontents);
+    const usersRef = collection(db,"users");
+
+    const daoInst = store.getState().setter.daoInst;
+
     const style = {
         position: 'absolute',
         top: '50%',
@@ -32,15 +50,15 @@ const Modify = () => {
         p: 4,
       };
 
-    //initial the value for store change of db
-    const initialTitle = location.state ? location.state.title : "NaN";
-    const initialcontents = location.state ? location.state.contents : "NaN";
-    const [title,setTitle] = useState(initialTitle);
-    const [contents,setContents] = useState(initialcontents);
-    const usersRef = collection(db,"users");
+    ////initial the value for store change of db
+    //const initialTitle = location.state ? location.state.title : "NaN";
+    //const initialcontents = location.state ? location.state.contents : "NaN";
+    //const [title,setTitle] = useState(initialTitle);
+    //const [contents,setContents] = useState(initialcontents);
+    //const usersRef = collection(db,"users");
 
-    const daoInst = store.getState().setter.daoInst;
-    console.log(daoInst);
+    //const daoInst = store.getState().setter.daoInst;
+    //console.log(daoInst);
 
     useEffect(()=>{
         const fetch_data = async () => {
@@ -80,7 +98,13 @@ const Modify = () => {
         await daoInst.openProposal(proposalId, key, 3);
     }
 
-    return <div className="Modify">
+    return (checkerror
+    ? <div className="Modify">
+        <Header />
+        <Box mt={10}>
+        <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
+            <PageTitle title="Modify"></PageTitle>
+        </Grid>
         <FormProvider {...methods}>
             <form onSubmit={handleSubmit(async(data)=>{
                 data = JSON.stringify(data);
@@ -96,36 +120,44 @@ const Modify = () => {
                 contractOpenProposal(key);
                 alert(`Proposal to modify ${key} has opened!`);
 
-                /*
                 await deleteDoc(doc(usersRef,walletId));
                 navigate("/");
-                */
-                })}
-            >
-                <h1>Modify Page</h1>
-                <label>Title</label>
-                <InputArea val="title" valid={{required:true}}/>
-                {errors.Title && <span>You need to input a title</span>}
-                <label>Contents</label>
-                <InputArea val="content" valid={{required:true}}/>
-                {errors.InputArea && <span>You need to input some contents</span>}
-                <input type="submit" value="submit"/>
+            })}>
+            <InputForm /> 
             </form>
         </FormProvider>
-        <button onClick={call_modal}>Save as Draft</button>
+
+        <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
+        <Button variant="contained" onClick={call_modal}>Save as Draft</Button>
         <Modal open={modalIsopen} onClose={modalIsopen}>
-        <Box sx={style}>
+        <Box>
             <Typography id="modal-modal-title" variant="h6" component="h2">
             Confirm to save the draft
             </Typography>
-            <button onClick = {submit_Modify}>Yes</button>
-            <button onClick = {()=>{
+            <Button variant="contained" onClick = {submit_Modify}>Yes</Button>
+            <Button variant="contained" onClick = {()=>{
                 setModalOpen(false);
-            }}>No</button>
+            }}>No</Button>
         </Box>
         </Modal>
-        <BackHome />
+          <Grid item xs={12}>
+              <ButtonComponent color="success" name="Back Home" to="/" />
+          </Grid>
+        </Grid>
+        </Box>
     </div>
-}
+    :
+    <div>
+        <Modal open={true}>
+        <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+            You don't have any selected contents.
+            </Typography>
+            <BackHome />
+        </Box>
+        </Modal>
+    </div>
+    )
+};
 
 export default Modify;

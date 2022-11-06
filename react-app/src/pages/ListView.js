@@ -7,6 +7,7 @@ import '../components/css/font.css'
 import SearchedItem from "../components/SearchedItem";
 import GetSearchReults from "../components/GetSearchResults";
 import PageTitle from "../components/PageTitle";
+import ButtonComponent from "../components/ButtonComponent";
 
 const ListView = () => {
   // Dummy data
@@ -19,28 +20,13 @@ const ListView = () => {
 
   return (
     <div className="ListView">
-      {/*
-      <h1>ListView</h1>
-      {
-        pages.map((page) =>(
-          <Grid container direction="column">
-            {
-            <SearchedItem
-              title={page.Title}
-              content={page.Contents}
-              key={page.Key}
-            />
-            }
-          </Grid>
-        ))
-      }
-        <Link to="/Detail"><input class="form-control" placeholder="to detail"></input></Link>
-      */}
-
       <Header /> 
       <Box mt={10}>
-        <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
+      <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
         <PageTitle title="Search Result"></PageTitle>
+      </Grid>
+      <Box ml={30}>
+        <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
           {
             pages.map((page) =>(
               <Grid container direction="column">
@@ -55,6 +41,42 @@ const ListView = () => {
             ))
           }
       </Grid>
+     {/* for demo */}
+      <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
+          {
+            pages.map((page) =>(
+              <Grid container direction="column">
+                {
+                <SearchedItem
+                  title={page.title}
+                  content={page.content}
+                  key={page.Key}
+                />
+                }
+              </Grid>
+            ))
+          }
+      </Grid>
+      <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
+          {
+            pages.map((page) =>(
+              <Grid container direction="column">
+                {
+                <SearchedItem
+                  title={page.title}
+                  content={page.content}
+                  key={page.Key}
+                />
+                }
+              </Grid>
+            ))
+          }
+      </Grid>
+      {/* for demo */}
+      <Grid item xs={12}>
+            <ButtonComponent color="success" name="Back Home" to="/"/>
+        </Grid>
+      </Box>
       </Box>
     </div>
 
