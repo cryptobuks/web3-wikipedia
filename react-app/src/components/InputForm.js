@@ -17,8 +17,14 @@ const daoAddr = "0xB4691AdC0641371C306654f92cf5b07D09E5E411";
 
 
 const InputForm = (props) => {
+  const navigate = useNavigate();
+
   const [daoInst, setDaoInst] = useState();
   const [value, setvalue] = useState(null);
+
+  const account = store.getState().setter.word;
+  const provider = store.getState().setter.provider;
+  const signer = store.getState().setter.signer;
 
   const methods = useForm();
   const {
@@ -26,9 +32,6 @@ const InputForm = (props) => {
     handleSubmit,
     formState: { errors },
   } = methods;
-  
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const contractCreateDocument = async (key) => {
     const contentId = "cloud";
@@ -37,8 +40,8 @@ const InputForm = (props) => {
 
   useEffect(() => {
     const _setDaoInst = async() => {
-      console.log(location.account);
-      if (location.account) {
+      console.log(account);
+      if (account) {
         console.log('called')
         await setDaoInst(
           new ethers.Contract(daoAddr, daoAbi, props.signer)
@@ -46,7 +49,7 @@ const InputForm = (props) => {
       }
     };
     _setDaoInst();
-  },[location.provider, location.signer, location.account]);
+  },[provider, signer, account]);
 
   return (
     <div>

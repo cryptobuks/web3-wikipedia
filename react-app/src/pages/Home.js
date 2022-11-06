@@ -9,8 +9,8 @@ import { useDispatch,useSelector } from "react-redux";
 
 import Header from "../components/Header";
 import ButtonComponent from "../components/ButtonComponent"
-// import store from '../store';
-// import { inputWord } from "../walletSlice";
+import store from '../store';
+import { inputWord, inputProvider, inputSigner } from "../walletSlice";
 import SearchBar from "../components/SearchBar";
 import { Searcher } from '../Search';
 
@@ -22,6 +22,11 @@ const Home = () => {
   const [signer, setSigner] = useState();
   const [chainId, setChainId] = useState();
   const [chainName, setChainName] = useState();
+
+  store.dispatch(inputWord(account));
+  store.dispatch(inputProvider(provider));
+  store.dispatch(inputSigner(signer));
+  console.log(store.getState());
 
   const connectWallet = () => {
     window.ethereum
