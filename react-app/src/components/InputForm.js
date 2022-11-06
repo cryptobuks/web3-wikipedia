@@ -1,7 +1,7 @@
 import { ErrorResponse } from "@remix-run/router";
 import { useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import InputArea from "./InputArea";
 import ButtonComponent from "./ButtonComponent";
 import Grid from "@mui/material/Grid";
@@ -13,19 +13,22 @@ import store from "../store";
 import daoArtifact from "../contracts/DAO.json";
 
 const daoAbi = daoArtifact.abi;
-const daoAddr = "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0";
-const loginAccount = store.getState().setter.word;
+const daoAddr = "0xB4691AdC0641371C306654f92cf5b07D09E5E411";
 
-export function InputForm() {
-  const [value, setvalue] = useState(null);
+
+const InputForm = (props) => {
   const [daoInst, setDaoInst] = useState();
+  const [value, setvalue] = useState(null);
+
   const methods = useForm();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = methods;
+  
   const navigate = useNavigate();
+  const location = useLocation();
 
   const contractCreateDocument = async (key) => {
     const contentId = "cloud";
@@ -33,14 +36,17 @@ export function InputForm() {
   }
 
   useEffect(() => {
-    const setDaoInst = async() => {
-      if (loginAccount) {
+    const _setDaoInst = async() => {
+      console.log(location.account);
+      if (location.account) {
+        console.log('called')
         await setDaoInst(
-          new ethers.Contract(daoAddr, daoAbi, loginAccount)
+          new ethers.Contract(daoAddr, daoAbi, props.signer)
         );
       }
     };
-  },[]);
+    _setDaoInst();
+  },[location.provider, location.signer, location.account]);
 
   return (
     <div>
@@ -79,3 +85,5 @@ export function InputForm() {
     </div>
   );
 }
+
+export default InputForm;

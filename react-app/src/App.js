@@ -16,7 +16,6 @@ import IpfsTest from "./components/ipfs/IpfsTest";
 
 let persistor = persistStore(store);
 
-
 const App = () => {
   return (
     <React.StrictMode>

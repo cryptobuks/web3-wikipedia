@@ -1,44 +1,75 @@
+import { Link } from "react-router-dom";
+
 import { useEffect, useState } from "react";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Header from "../components/Header";
-import ButtonComponent from "../components/ButtonComponent"
+import Button from '@mui/material/Button';
+import { ethers } from "ethers";
 import { useDispatch,useSelector } from "react-redux";
 
-import store from '../store';
-import { inputWord } from "../walletSlice";
+import Header from "../components/Header";
+import ButtonComponent from "../components/ButtonComponent"
+// import store from '../store';
+// import { inputWord } from "../walletSlice";
 import SearchBar from "../components/SearchBar";
 import { Searcher } from '../Search';
-import Button from '@mui/material/Button';
 
 
 const Home = () => {
-  const accountinitialState = store.getState().setter.word;
   const [account, setAccount] = useState();
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [metaMaskFlag, setMetaMaskFlag] = useState(false);
-
-  store.dispatch(inputWord(account));
-  console.log(store.getState());
-  console.log(store.getState().setter.word);
-  //console.log(account);
-
-  useEffect(() => {
-    const tmpFlag = window.ethereum && window.ethereum.isMetaMask;
-    setMetaMaskFlag(tmpFlag);
-    connectWallet();
-  }, []);
+  const [isConnected, setIsConnected] = useState(false);
+  const [provider, setProvider] = useState();
+  const [signer, setSigner] = useState();
+  const [chainId, setChainId] = useState();
+  const [chainName, setChainName] = useState();
 
   const connectWallet = () => {
     window.ethereum
       .request({ method: "eth_requestAccounts" })
       .then((result) => {
         setAccount(result[0]);
+        setIsConnected(true);
       })
       .catch((error) => {
-        setErrorMessage(error.message);
+        console.log(error.message);
       });
   };
+
+  useEffect(() => {
+    const tmpFlag = window.ethereum && window.ethereum.isMetaMask;
+    connectWallet();
+  }, []);
+
+  useEffect(() => {
+    if(!account || !ethers.utils.isAddress(account)) {
+      return
+    }
+    if(!window.ethereum) return
+
+    // Web3Provider
+    const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
+    setProvider(web3Provider);
+
+    console.log(chainName);
+  }, [isConnected]);
+
+  useEffect(() => {
+    if(!account || !ethers.utils.isAddress(account)) {
+      return
+    }
+    if(!window.ethereum) return
+    // Localhost
+    setSigner(provider.getSigner(0));
+    
+    // // Rinkeby
+    // const newSigner = new ethers.Wallet(process.env.REACT_APP_PRIVATE_KEY, provider);
+    // setSigner(newSigner);
+
+    provider.getNetwork().then((result) => {
+      setChainId(result.chainId)
+      setChainName(result.name)
+    })
+  }, [provider]);
 
   return (
     <div className="Home">
@@ -60,13 +91,14 @@ const Home = () => {
           </Grid>
           <Grid item xs={12}>
             <ButtonComponent
-             color="primary"
+              color="primary"
               name="New"
               to="/create"
+              provider={provider}
+              signer={signer}
+              account={account}
             />
           </Grid>
-
-          
         </Grid>
       </Box>
     </div>
