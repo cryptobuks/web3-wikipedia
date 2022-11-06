@@ -11,6 +11,11 @@ import { Modal,Box,Typography } from "@mui/material";
 import Header from "../components/Header";
 import '../components/css/font.css'
 import PageTitle from "../components/PageTitle";
+import InputForm from "../components/InputForm";
+import Grid from '@mui/material/Grid';
+import ButtonComponent from "../components/ButtonComponent";
+import Button from '@mui/material/Button';
+import IpfsCreateObject from "../components/ipfs/IpfsCreateObject";
 
 const Modify = () => {
     // values from the previous page
@@ -19,17 +24,6 @@ const Modify = () => {
 
     //values from the provider
     const walletId = store.getState().setter.word;
-    const style = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-      };
 
     // check if has some data in location and wallet
     const checkerror = (walletId != null) && (location.state);
@@ -42,6 +36,19 @@ const Modify = () => {
     const [contents,setContents] = useState(initialcontents);
     const usersRef = collection(db,"users");
 
+    const daoInst = store.getState().setter.daoInst;
+
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+      };
 
     useEffect(()=>{
         const fetch_data = async () => {
@@ -56,7 +63,7 @@ const Modify = () => {
 
     // values for form
     const [value,setvalue] = useState(null);
-    const methods = useForm({defaultValues:{Title:title,Contents:contents}});
+    const methods = useForm({defaultValues:{title:title,content:contents}});
     const {register,handleSubmit,formState:{errors}} = methods;
 
     // values for modal
@@ -70,45 +77,65 @@ const Modify = () => {
     const submit_Modify = async() => {
         const docRef = await setDoc(doc(usersRef,walletId),{
             title:title,
-            contents:contents,
+            content:contents,
         })
         console.log(docRef);
         setModalOpen(false);
     }
 
-    return( checkerror
+    const contractOpenProposal = async (key) => {
+        const proposalId = "0";
+        const contentId = "cloud";
+        await daoInst.openProposal(proposalId, contentId, 3);
+    }
+
+    return (checkerror
     ? <div className="Modify">
+        <Header />
+        <Box mt={10}>
+        <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
+            <PageTitle title="Modify"></PageTitle>
+        </Grid>
         <FormProvider {...methods}>
             <form onSubmit={handleSubmit(async(data)=>{
-                        console.log(data)
-                        setvalue(data);
-                        await deleteDoc(doc(usersRef,walletId));
-                        //TO DO: send value to ipfs
-                        navigate("/");
-                    })}>
-                <h1>Modify Page</h1>
-                <label>Title</label>
-                <InputArea val="Title" valid={{required:true}}/>
-                {errors.Title && <span>You need to input a title</span>}
-                <label>Contents</label>
-                <InputArea val="Contents" valid={{required:true}}/>
-                {errors.InputArea && <span>You need to input some contents</span>}
-                <input type="submit" value="submit"/>
+                data = JSON.stringify(data);
+                console.log(data)
+                setvalue(data);
+
+                // Dummy settings
+                const bucket = "web3-wiki";
+                const key = "test-content-1.json";
+                const updatedKey = `modified-${key}`;
+                IpfsCreateObject(data, bucket, updatedKey, "text/plain");
+                contractOpenProposal(key);
+                alert(`Proposal to modify ${key} has opened!`);
+
+                await deleteDoc(doc(usersRef,walletId));
+                navigate("/");
+            })}>
+            <InputForm /> 
             </form>
         </FormProvider>
-        <button onClick={call_modal}>Save as Draft</button>
+        
+
+        <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
+        <Button variant="contained" onClick={call_modal}>Save as Draft</Button>
         <Modal open={modalIsopen} onClose={modalIsopen}>
-        <Box sx={style}>
+        <Box>
             <Typography id="modal-modal-title" variant="h6" component="h2">
             Confirm to save the draft
             </Typography>
-            <button onClick = {submit_Modify}>Yes</button>
-            <button onClick = {()=>{
+            <Button variant="contained" onClick = {submit_Modify}>Yes</Button>
+            <Button variant="contained" onClick = {()=>{
                 setModalOpen(false);
-            }}>No</button>
+            }}>No</Button>
         </Box>
         </Modal>
-        <BackHome />
+          <Grid item xs={12}>
+              <ButtonComponent color="success" name="Back Home" to="/" />
+          </Grid>
+        </Grid>
+        </Box>
     </div>
     :
     <div>
@@ -122,6 +149,6 @@ const Modify = () => {
         </Modal>
     </div>
     )
-}
+};
 
 export default Modify;

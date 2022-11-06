@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { BottomNavigation } from "@mui/material";
 import {useForm,FormProvider} from "react-hook-form";
 import { useNavigate, useLocation } from "react-router-dom"
@@ -10,12 +10,14 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import PageTitle from "../components/PageTitle";
-
+import Button from '@mui/material/Button';
+import ButtonComponent from "../components/ButtonComponent"
 
 const Detail = () => {
   const { state } = useLocation();
   const title = state.title;
   const contents = state.contents;
+  const key = state.key;
 
   // contents example -> fetch from the ipfs
   // to do: get the data from ipfs
@@ -40,30 +42,48 @@ const Detail = () => {
     // to do:send the good state to ipfs and connect with contract
   }
 
+  useEffect(() => {
+    const getVoteFromContract = async () => {
+      
+    };
+  }, []);
+
   return (
     <div className="Detail">
       <Header />
       <Box mt={10}>
         <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
-        <PageTitle title={title}></PageTitle>
-          <Grid item xs={12}>
-      <p>{contents}</p>
-      {
-        contents_example.closed ? (
-          <div className="NotClosed">
-          <button type="button">Good:{goodState}</button>
-          <button type="button">Bad:{badState}</button>
-          </div>
-        ) : (
-          <div className="Closed">
-          <button type="button" onClick={updateGood}>Good:{goodState}</button>
-          <button type="button" onClick={updateBad}>Bad:{badState}</button>
-          </div>
-        )
-      }
-      <BackHome />
-      <button onClick={()=>{navigate("/Modify",{state:{title:title,contents:contents}})}}>Modify</button>
-        </Grid>
+          <PageTitle title={title}></PageTitle>
+          <Grid>
+            {contents}
+            </Grid>
+              {
+                contents_example.closed ? (
+                  <div className="NotClosed">
+                  <Button variant="contained" type="button">Good: {goodState}</Button>
+                  <Button variant="contained" type="button">Bad: {badState}</Button>
+                  </div>
+                ) : (
+                  <div className="Closed">
+                    <Button disabled variant="contained" type="button" onClick={updateGood}>Good:{goodState}</Button>
+                    <Button disabled variant="contained" type="button" onClick={updateBad}>Bad:{badState}</Button>
+                  </div>
+                )
+              }
+
+              {
+                contents_example.closed ? (
+                  <div className="NotClosed">
+                  <Button variant="contained" type="button">forced close button for Demo</Button>
+                  </div>
+                ) : (
+                  <div className="Closed">
+                    <Button disabled variant="contained" type="button">forced close button for Demo</Button>
+                  </div>
+                )
+              }
+            <ButtonComponent color="success" name="Back Home" to="/" />
+            <Button variant="contained" onClick={()=>{navigate("/Modify",{state:{title:title,contents:contents}})}}>Modify</Button>
         </Grid>
       </Box>
     </div>

@@ -5,10 +5,13 @@ const ButtonComponent = (props) => {
   return (
     <Button
       variant="contained"
-      color={ props.color }
       component={Link}
+      color={ props.color }
       to={ props.to }
       size="large"
+      provider={ props.provider }
+      signer={ props.signer }
+      account={ props.account }
     >
       { props.name }
     </Button>

@@ -1,30 +1,29 @@
-.Create form {
+.Modify  form, .Create form {
   max-width: 900px;
   margin: 0 auto;
 }
 
-.Create #contents{
+.Modify #content, .Create #content{
   height: 550px;
 }
 
-.Create h1 {
+.Modify h1, .Create h1 {
   font-weight: 100;
   text-align: center;
   padding-bottom: 10px;
   border-bottom: 1px solid rgb(79, 98, 148);
 }
 
-.Create .form {
-  /* background: white; */
+.Modify .form, .Create .form {
   max-width: 800px;
   margin: 0 auto;
 }
 
-.Create p::before {
+.Modify p::before, .Create p::before {
   display: inline;
 }
 
-.Create input {
+.Modify input , .Create input {
   display: block;
   box-sizing: border-box;
   width: 100%;
@@ -37,7 +36,7 @@
 }
 
 
-.Create label {
+.Modify label, .Create label {
   line-height: 2;
   text-align: left;
   display: block;
@@ -50,8 +49,8 @@
   font-weight: bold;
 }
 
-.Create button[type="submit"],
-.Create input[type="submit"] {
+.Modify button[type="submit"], .Create button[type="submit"],
+.Modify input[type="submit"], .Create input[type="submit"] {
   background: rgb(25,118,210);
   color: rgb(255, 255, 255);
   text-transform: uppercase;
@@ -65,35 +64,35 @@
   box-shadow: 0 4px 4px -2px rgba(0, 0, 0, .5);
 }
 
-.Edit button[type="submit"]:hover,
-.Edit input[type="submit"]:hover {
+.Modify button[type="submit"]:hover, .Create button[type="submit"]:hover,
+.Modify input[type="submit"]:hover, .Create input[type="submit"]:hover {
   background: rgb(19, 85, 151);
 }
 
-.Create button[type="submit"]:active,
-.Create input[type="button"]:active,
-.Create input[type="submit"]:active {
+.Modify button[type="submit"]:active, .Create button[type="submit"]:active,
+.Modify input[type="button"]:active, .Create input[type="button"]:active,
+.Modify input[type="submit"]:active, .Create input[type="submit"]:active {
   transition: 0.3s all;
   transform: translateY(3px);
   border: 1px solid transparent;
   opacity: 0.8;
 }
 
-.Create input:disabled {
+.Modify input:disabled, .Create input:disabled {
   opacity: 0.4;
 }
 
-.Create input[type="button"]:hover {
+.Modify input[type="button"]:hover, .Create input[type="button"]:hover {
   transition: 0.3s all;
 }
 
-.Create button[type="submit"],
-.Create input[type="button"],
-.Create input[type="submit"] {
+.Modify button[type="submit"], .Create button[type="submit"],
+.Modify input[type="button"], .Create input[type="button"],
+.Modify input[type="submit"], .Create input[type="submit"] {
   -webkit-appearance: none;
 }
 
-.Create button[type="button"] {
+.Modify button[type="button"], .Create button[type="button"] {
   display: block;
   appearance: none;
   border: none;
@@ -102,11 +101,11 @@
   border-radius: 4px;
 }
 
-.Create hr {
+.Modify hr, .Create hr {
   margin-top: 30px;
 }
 
-.Create button {
+.Modify button, .Create button {
   display: block;
   appearance: none;
   margin-top: 40px;

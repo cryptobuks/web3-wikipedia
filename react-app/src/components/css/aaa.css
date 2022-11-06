@@ -1,0 +1,117 @@
+.Modify form {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .Modify #content{
+    height: 550px;
+  }
+  
+  .Modify h1 {
+    font-weight: 100;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(79, 98, 148);
+  }
+  
+  .Modify .form {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .Modify p::before {
+    display: inline;
+  }
+  
+  .Modify input {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 6px;
+    border: 0.5px solid rgb(225, 225, 225);
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    box-shadow: 0 2px 5px -2px rgba(0, 0, 0, .5);
+  }
+  
+  
+  .Modify label {
+    line-height: 2;
+    text-align: left;
+    display: block;
+    margin-bottom: 13px;
+    margin-top: 20px;
+    color: black;
+    font-size: 25px;
+    font-weight: 200;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+  }
+  
+  .Modify button[type="submit"],
+  .Modify input[type="submit"] {
+    background: rgb(25,118,210);
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    margin-top: 40px;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 100;
+    letter-spacing: 10px;
+    box-shadow: 0 4px 4px -2px rgba(0, 0, 0, .5);
+  }
+  
+  .Edit button[type="submit"]:hover,
+  .Edit input[type="submit"]:hover {
+    background: rgb(19, 85, 151);
+  }
+  
+  .Modify button[type="submit"]:active,
+  .Modify input[type="button"]:active,
+  .Modify input[type="submit"]:active {
+    transition: 0.3s all;
+    transform: translateY(3px);
+    border: 1px solid transparent;
+    opacity: 0.8;
+  }
+  
+  .Modify input:disabled {
+    opacity: 0.4;
+  }
+  
+  .Modify input[type="button"]:hover {
+    transition: 0.3s all;
+  }
+  
+  .Modify button[type="submit"],
+  .Modify input[type="button"],
+  .Modify input[type="submit"] {
+    -webkit-appearance: none;
+  }
+  
+  .Modify button[type="button"] {
+    display: block;
+    appearance: none;
+    border: none;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 4px;
+  }
+  
+  .Modify hr {
+    margin-top: 30px;
+  }
+  
+  .Modify button {
+    display: block;
+    appearance: none;
+    margin-top: 40px;
+    border: 1px solid #333;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 4px;
+  }
