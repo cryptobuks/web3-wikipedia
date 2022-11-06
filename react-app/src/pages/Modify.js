@@ -50,6 +50,16 @@ const Modify = () => {
         p: 4,
       };
 
+    ////initial the value for store change of db
+    //const initialTitle = location.state ? location.state.title : "NaN";
+    //const initialcontents = location.state ? location.state.contents : "NaN";
+    //const [title,setTitle] = useState(initialTitle);
+    //const [contents,setContents] = useState(initialcontents);
+    //const usersRef = collection(db,"users");
+
+    //const daoInst = store.getState().setter.daoInst;
+    //console.log(daoInst);
+
     useEffect(()=>{
         const fetch_data = async () => {
             const docSnap = await getDoc(doc(usersRef,walletId));
@@ -94,9 +104,8 @@ const Modify = () => {
     }
 
     const contractOpenProposal = async (key) => {
-        const proposalId = "0";
-        const contentId = "cloud";
-        await daoInst.openProposal(proposalId, contentId, 3);
+        const proposalId = "2";
+        await daoInst.openProposal(proposalId, key, 3);
     }
 
     return (checkerror
@@ -117,6 +126,7 @@ const Modify = () => {
                 const key = "test-content-1.json";
                 const updatedKey = `modified-${key}`;
                 IpfsCreateObject(data, bucket, updatedKey, "text/plain");
+                console.log(daoInst);
                 contractOpenProposal(key);
                 alert(`Proposal to modify ${key} has opened!`);
 

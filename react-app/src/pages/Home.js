@@ -18,7 +18,7 @@ import Typography from '@mui/material/Typography';
 
 
 const daoAbi = daoArtifact.abi;
-const daoAddr = "0xB4691AdC0641371C306654f92cf5b07D09E5E411";
+const daoAddr = "0xB16eCB9Ed22890a7f9116a0B5BcAe593E64FC71B";
 
 const Home = () => {
   const [account, setAccount] = useState();
@@ -111,7 +111,7 @@ const Home = () => {
             </Grid>
             <Typography component="div">
               <Box id = "sub-message" textAlign="justify" m={1} mt={5}>
-              This is the future wikipedia which is connected with the web3 network.
+              This is the future wikipedia which connected with the web3 network.
               </Box>
               <Box id = "sub-message" textAlign="justify" m={1}>
               Your knowledge will not only help other people, but also satisfy yourself.
