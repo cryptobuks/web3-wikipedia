@@ -40,6 +40,7 @@ const Modify = () => {
     const usersRef = collection(db,"users");
 
     const daoInst = store.getState().setter.daoInst;
+    console.log(daoInst);
 
     useEffect(()=>{
         const fetch_data = async () => {
@@ -75,9 +76,8 @@ const Modify = () => {
     }
 
     const contractOpenProposal = async (key) => {
-        const proposalId = "0";
-        const contentId = "cloud";
-        await daoInst.openProposal(proposalId, contentId, 3);
+        const proposalId = "2";
+        await daoInst.openProposal(proposalId, key, 3);
     }
 
     return <div className="Modify">
@@ -92,12 +92,16 @@ const Modify = () => {
                 const key = "test-content-1.json";
                 const updatedKey = `modified-${key}`;
                 IpfsCreateObject(data, bucket, updatedKey, "text/plain");
+                console.log(daoInst);
                 contractOpenProposal(key);
                 alert(`Proposal to modify ${key} has opened!`);
 
+                /*
                 await deleteDoc(doc(usersRef,walletId));
                 navigate("/");
-            })}>
+                */
+                })}
+            >
                 <h1>Modify Page</h1>
                 <label>Title</label>
                 <InputArea val="title" valid={{required:true}}/>

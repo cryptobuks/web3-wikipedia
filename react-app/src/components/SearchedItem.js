@@ -12,7 +12,7 @@ const SearchedItem = (props) => {
   return (
     <Box>
      <ListItemText primary={
-     <Link to={"/detail"} state={{ title: props.title, contents: props.content }}>
+       <Link to={"/detail"} state={{ title: props.title, contents: props.content, key: props.key }}>
       <Typography
                   sx={{  fontSize: 34 }}
                   component="span"
