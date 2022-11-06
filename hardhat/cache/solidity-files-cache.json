@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/taigamat/MyRoot/private/web3-wikipedia/hardhat/contracts/DAO.sol": {
-      "lastModificationDate": 1667637335498,
-      "contentHash": "cc9c1ff015b8582d30a0be2864d91d29",
+      "lastModificationDate": 1667719719859,
+      "contentHash": "2da28aa3fedd8493945c0397081a33e5",
       "sourceName": "contracts/DAO.sol",
       "solcConfig": {
         "version": "0.8.4",
