@@ -10,7 +10,8 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import PageTitle from "../components/PageTitle";
-
+import Button from '@mui/material/Button';
+import ButtonComponent from "../components/ButtonComponent"
 
 const Detail = () => {
   const { state } = useLocation();
@@ -53,24 +54,36 @@ const Detail = () => {
       <Box mt={10}>
         <Grid container rowSpacing={3} alignItems='center' justifyContent='center' direction="column">
           <PageTitle title={title}></PageTitle>
-            <Grid item xs={12}>
-              <p>{contents}</p>
+          <Grid>
+            {contents}
+            </Grid>
               {
                 contents_example.closed ? (
                   <div className="NotClosed">
-                  <button type="button">Good: {goodState}</button>
-                  <button type="button">Bad: {badState}</button>
+                  <Button variant="contained" type="button">Good: {goodState}</Button>
+                  <Button variant="contained" type="button">Bad: {badState}</Button>
                   </div>
                 ) : (
                   <div className="Closed">
-                  <button type="button" onClick={updateGood}>Good:{goodState}</button>
-                  <button type="button" onClick={updateBad}>Bad:{badState}</button>
+                    <Button disabled variant="contained" type="button" onClick={updateGood}>Good:{goodState}</Button>
+                    <Button disabled variant="contained" type="button" onClick={updateBad}>Bad:{badState}</Button>
                   </div>
                 )
               }
-              <BackHome />
-              <button onClick={()=>{navigate("/Modify",{state:{title:title,contents:contents}})}}>Modify</button>
-          </Grid>
+
+              {
+                contents_example.closed ? (
+                  <div className="NotClosed">
+                  <Button variant="contained" type="button">forced close button for Demo</Button>
+                  </div>
+                ) : (
+                  <div className="Closed">
+                    <Button disabled variant="contained" type="button">forced close button for Demo</Button>
+                  </div>
+                )
+              }
+            <ButtonComponent color="success" name="Back Home" to="/" />
+            <Button variant="contained" onClick={()=>{navigate("/Modify",{state:{title:title,contents:contents}})}}>Modify</Button>
         </Grid>
       </Box>
     </div>
