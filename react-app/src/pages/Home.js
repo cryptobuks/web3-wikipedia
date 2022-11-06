@@ -111,7 +111,7 @@ const Home = () => {
             </Grid>
             <Typography component="div">
               <Box id = "sub-message" textAlign="justify" m={1} mt={5}>
-              This is the future wikipedia which connected with the web4 network.
+              This is the future wikipedia which is connected with the web3 network.
               </Box>
               <Box id = "sub-message" textAlign="justify" m={1}>
               Your knowledge will not only help other people, but also satisfy yourself.
